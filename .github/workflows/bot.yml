@@ -23,12 +23,12 @@ jobs:
            pip install ruff
 
     - name: Syntax Check
-      run: python -m py_compile$(find.-name"*.py")
+      run: python -m py_compile $(find . -name "*.py")
 
     - name: Run Bot Check
       env:
         APP_TOKEN: ${{secrets.APP_TOKEN}}
       run: python validate_token.py
 
-    - mame: Lint
+    - name: Lint
       run: ruff check
