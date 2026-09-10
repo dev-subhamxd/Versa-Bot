@@ -13,7 +13,7 @@ async def on_ready():
     print(f'Logged on as {bot.user}!')
 
 def emoji(name):
-    return discord.utils.get(bot.emojis, name=name)
+    return discord.utils.get(bot.application_emojis, name=name)
 
 @bot.command()
 async def balance(ctx):
