@@ -12,11 +12,11 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     print(f'Logged on as {bot.user}!')
 
-def Emoji(name):
-    return f'discord.utils.get(bot.emojis, name="name")
+def emoji(name):
+    return discord.utils.get(bot.emojis, name=name)
 
 @bot.command()
 async def balance(ctx):
-    await ctx.send(f"{ctx.author.name}, you have 0 coins. (Emoji(godofspaceavatar))")
+    await ctx.send(f"{ctx.author.name}, you have 0 coins. {emoji('godofspaceavatar')}")
 
 bot.run(os.environ["APP_TOKEN"])
