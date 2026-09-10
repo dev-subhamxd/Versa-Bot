@@ -11,6 +11,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print(f'Logged on as {bot.user}!')
+    await bot.fetch_application_emojis()
 
 def emoji(name):
     return discord.utils.get(bot.application_emojis, name=name)
