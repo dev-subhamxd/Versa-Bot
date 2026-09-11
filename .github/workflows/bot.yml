@@ -7,7 +7,7 @@ on:
     - cron: '0*/6***'
 
 jobs:
-  build:
+  run-bot:
     runs-on: ubuntu-latest
     steps:
       - name: Check out Code
