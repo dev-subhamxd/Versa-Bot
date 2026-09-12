@@ -20,13 +20,13 @@ def emoji(name):
 async def whoami(ctx):
     author = ctx.author
     await ctx.send(
-        f"ID: {author.id}\n"
+        f"ID: {author.id}"
         f"Name: {author.name}\n"
         f"Display name: {author.display_name}\n"
-        f"Mention: {author.mention}\n"
+        f"Mention: {author.mention}"
         f"Discriminator/tag: {author.discriminator}\n"
         f"Avatar URL: {author.display_avatar.url}\n"
-        f"Joined server: {author.joined_at}\n"
+        f"Joined server: {author.joined_at}"
         f"Account created: {author.created_at}\n"
         f"Top role: {author.top_role.name}\n"
         f"All roles: {[r.name for r in author.roles]}"
