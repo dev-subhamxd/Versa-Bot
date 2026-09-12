@@ -1,5 +1,9 @@
 name: Bot CI
 
+concurrency:
+  group: bot-ci-${{ github.ref }}
+  cancel-in-progress: true
+  
 on:
   push:
     branches: [main]
