@@ -17,7 +17,7 @@ def emoji(name):
     return discord.utils.get(bot.app_emojis, name=name)
 
 @bot.command()
-async def balance(ctx):
-    await ctx.send(f"{ctx.author.name}, you have 0 coins. {emoji('godofspaceavatar')}")
+async def avatar(ctx):
+    await ctx.send(f"{ctx.author.name}, These are the available Avatars! {emoji('godofspaceavatar')}")
 
 bot.run(os.environ["APP_TOKEN"])
