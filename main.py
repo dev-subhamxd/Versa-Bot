@@ -18,6 +18,6 @@ def emoji(name):
 
 @bot.command()
 async def avatar(ctx):
-    await ctx.send(f"{ctx.author.name}, These are the available Avatars! {emoji('godofspaceavatar')}")
+    await ctx.send(f"{ctx.author.display_name}, These are the available Avatars! {emoji('godofspaceavatar')}")
 
 bot.run(os.environ["APP_TOKEN"])
