@@ -22,6 +22,6 @@ async def avatar(ctx):
 
 @bot.command()
 async def hello(ctx):
-    await ctx.send("Hello Buddy!")
+    await ctx.send(f"Hello {ctx.author.display_name}!")
 
 bot.run(os.environ["APP_TOKEN"])
