@@ -3,11 +3,21 @@ import os
 import discord
 from discord.ext import commands
 
+import aiohttp
+
 intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
-    
+
+class MyBot(commands.Bot):
+    async def setup_hook(self):
+        self.session = aiohttp.ClientSession()
+
+    async def close(self):
+        await self.session.close()
+        await super().close()
+
 @bot.event
 async def on_ready():
     print(f'Logged on as {bot.user}!')
