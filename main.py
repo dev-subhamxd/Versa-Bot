@@ -2,7 +2,7 @@ import os
 
 import discord
 from discord.ext import commands
-from discord impprt ui
+from discord import ui
 
 intents = discord.Intents.default()
 intents.message_content = True
