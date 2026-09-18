@@ -23,8 +23,9 @@ async def avatar(ctx):
     await ctx.send(f"{emoji('godofspaceavatar')}")
 
 @bot.command()
-async def card(ctx):
-    await ctx.send(f"{ctx.author.display_name}, here's your card!")
-    await ctx.send(make_card("Subham", "Developer"))
+async def profile(ctx):
+    await ctx.send(
+        f"{ctx.author.display_name}, here's your card!",
+        file=discord.File(make_card("Subham", "Legendary")
 
 bot.run(os.environ["APP_TOKEN"])
