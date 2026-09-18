@@ -3,6 +3,8 @@ import os
 import discord
 from discord.ext import commands
 
+from card import make_card
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -19,5 +21,10 @@ def emoji(name):
 @bot.command()
 async def avatar(ctx):
     await ctx.send(f"{emoji('godofspaceavatar')}")
+
+@bot.command()
+async def card(ctx):
+    await ctx.send(f"{ctx.author.display_name}, here's your card!")
+    await ctx.send(make_card("Subham", "Developer"))
 
 bot.run(os.environ["APP_TOKEN"])
