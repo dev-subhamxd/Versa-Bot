@@ -24,9 +24,6 @@ async def avatar(ctx):
 
 @bot.command()
 async def profile(ctx):
-    await ctx.send(
-        f"{ctx.author.display_name}, here's your card!",
-        file=discord.File(make_card("Subham", "Legendary"))
-    )
+    await ctx.send(file=await card_display(ctx.author))
     
 bot.run(os.environ["APP_TOKEN"])
