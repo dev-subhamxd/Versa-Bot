@@ -23,6 +23,9 @@ def card_display(display_name, about_me):
 
     Usage: await ctx.send(file=card_display(ctx.author.display_name, about_me))
     """
+    display_name = str(display_name or "Unknown")
+    about_me = str(about_me or "")
+
     img = Image.new("RGB", (W, H), "white")
     draw = ImageDraw.Draw(img)
 
