@@ -149,7 +149,7 @@ def _render(avatar_bytes, name, opts):
     draw.text(t["name_pos"], name, font=name_font, fill="black")
 
     # Bio box (yellow)
-    bx0, by0, bx1, by1 = t["bio_box"]
+    bx0, by0, _bx1, by1 = t["bio_box"]
     draw.rounded_rectangle(t["bio_box"], radius=12, fill="#FFF0C2", outline="black", width=1)
     lines = textwrap.wrap(opts["bio"], width=t["bio_wrap"])[:3]
     bio_font = _font(opts["font"], t["bio_size"])
@@ -173,7 +173,7 @@ async def card_display(author):
     """
     try:
         avatar_bytes = await author.display_avatar.replace(size=256, format="png").read()
-    except Exception:
+    except discord.DiscordException:
         avatar_bytes = None
 
     opts = await _resolve_customizations(author.id)
