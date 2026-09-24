@@ -18,10 +18,11 @@ def _font(size, bold=False):
     return ImageFont.load_default()
 
 
-def card_display(display_name, about_me):
+def card_display(display_name, about_me, avatar_bytes=None):
     """Render the profile card and return it as a discord.File.
 
-    Usage: await ctx.send(file=card_display(ctx.author.display_name, about_me))
+    avatar_bytes = await ctx.author.display_avatar.replace(size=256, format="png").read()
+    await ctx.send(file=card_display(ctx.author.display_name, about_me, avatar_bytes))
     """
     display_name = str(display_name or "Unknown")
     about_me = str(about_me or "")
@@ -29,8 +30,16 @@ def card_display(display_name, about_me):
     img = Image.new("RGB", (W, H), "white")
     draw = ImageDraw.Draw(img)
 
-    # Black circle (top left)
-    draw.ellipse((25, 25, 125, 125), fill="black")
+    # Avatar in a circle (top left); black circle if no avatar is given
+    size = 100
+    if avatar_bytes:
+        avatar = Image.open(io.BytesIO(avatar_bytes)).convert("RGB").resize((size, size), Image.LANCZOS)
+        mask = Image.new("L", (size * 4, size * 4), 0)
+        ImageDraw.Draw(mask).ellipse((0, 0, size * 4 - 1, size * 4 - 1), fill=255)
+        mask = mask.resize((size, size), Image.LANCZOS)
+        img.paste(avatar, (25, 25), mask)
+    else:
+        draw.ellipse((25, 25, 125, 125), fill="black")
 
     # Empty box (lower left)
     draw.rounded_rectangle((25, 165, 125, 270), radius=12, outline="black", width=2)
