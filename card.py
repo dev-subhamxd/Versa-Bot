@@ -40,7 +40,7 @@ async def _get(path):
         if inspect.isawaitable(result):
             result = await result
         return result or {}
-    except Exception:
+    except Exception:  # noqa: BLE001
         return {}
 
 
