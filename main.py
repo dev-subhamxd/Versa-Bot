@@ -24,6 +24,7 @@ async def avatar(ctx):
 
 @bot.command()
 async def profile(ctx):
+    about_me = "Lost in a million souls, Living Humanity's last hope......."
     await ctx.send(file=card_display(ctx.author.display_name, about_me))
     
 bot.run(os.environ["APP_TOKEN"])
