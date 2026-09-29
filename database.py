@@ -2,7 +2,7 @@
 import os
 import aiohttp
 
-DB_URL = os.getenv("DATABASE")
+DB_URL = f"{os.getenv("DATABASE")}/.json"
 
 _session: aiohttp.ClientSession | None = None
 
