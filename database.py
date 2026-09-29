@@ -13,7 +13,7 @@ def _get_session() -> aiohttp.ClientSession:
         _session = aiohttp.ClientSession()
     return _session
 
-async def _get(path: str):
+async def _get():
     session = _get_session()
     async with session.get(DB_URL) as resp:
         if resp.status != 200:
