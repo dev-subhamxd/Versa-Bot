@@ -15,7 +15,7 @@ def _get_session() -> aiohttp.ClientSession:
 
 async def _get(path: str):
     session = _get_session()
-    async with session.get(_url(path)) as resp:
+    async with session.get(DB_URL) as resp:
         if resp.status != 200:
             return None
         return await resp.json()
