@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 
 from card import card_display
+from database import _get
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -31,5 +32,6 @@ async def profile(ctx):
 @bot.command()
 async def search(ctx):
     await ctx.send(f"Hello {ctx.author.mention}")
+    await ctx.send(_get())
     
 bot.run(os.environ["APP_TOKEN"])
