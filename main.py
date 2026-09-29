@@ -31,6 +31,6 @@ async def profile(ctx):
 
 @bot.command()
 async def search(ctx):
-    await ctx.send(_get())
+    await ctx.send(f"Hello {ctx.author.mention}")
     
 bot.run(os.environ["APP_TOKEN"])
