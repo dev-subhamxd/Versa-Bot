@@ -2,7 +2,7 @@
 import os
 import aiohttp
 
-DB_URL = f"{os.getenv("DATABASE")}/.json"
+DB_URL = os.getenv("DATABASE")
 
 _session: aiohttp.ClientSession | None = None
 
@@ -15,7 +15,7 @@ def _get_session() -> aiohttp.ClientSession:
 
 async def _get():
     session = _get_session()
-    async with session.get(DB_URL.json) as resp:
+    async with session.get(DB_URL) as resp:
         if resp.status != 200:
             return None
         return await resp.json()
