@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 
 from card import card_display
-from database import _get
+from database import _get, register_user
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -36,6 +36,18 @@ async def search(ctx):
     path = f"users/{ctx.author.id}"
     data = await _get(path)
     await ctx.send(str(data))
+
+@bot.command()
+async def register(ctx):
+    await ctx.send(f"Checking User's Database.....")
+    path = f"users/{ctx.author.id}"
+    if await _get(path) is not None:
+        return ctx.send("User Data already exists!")
+    else:
+        return ctx.send("Registering User in the Database......")
+        return ctx.send(await register_user(ctx.author.id))
+
+# --------------------- Miscellaneous ---------------------
 
 @bot.command()
 async def ping(ctx):
