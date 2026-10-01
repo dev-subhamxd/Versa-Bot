@@ -24,7 +24,7 @@ async def _put(path, value):
     session = _get_session()
     url = f"{DB_URL}/{path}.json"
     async with session.put(url, json=value) as resp:
-        return resp.status == 20
+        return resp.status == 200
 
 async def register_user(id):
     path = f"users/{id}"
