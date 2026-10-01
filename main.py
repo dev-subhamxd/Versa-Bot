@@ -32,7 +32,8 @@ async def profile(ctx):
 @bot.command()
 async def search(ctx):
     await ctx.send(f"Hello {ctx.author.mention}")
-    data = await _get()
+    path = f"users/{ctx.author.id}"
+    data = await _get(path)
     await ctx.send(str(data))
     
 bot.run(os.environ["APP_TOKEN"])
