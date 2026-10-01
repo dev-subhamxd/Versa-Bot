@@ -2,7 +2,7 @@ import os
 import aiohttp
 
 DB_URL = os.getenv("DATABASE")
-success = f"User Successfully Registered!"
+success = "User Successfully Registered!"
 
 _session: aiohttp.ClientSession | None = None
 
