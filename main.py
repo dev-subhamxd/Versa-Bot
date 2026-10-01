@@ -41,11 +41,14 @@ async def search(ctx):
 async def register(ctx):
     await ctx.send("Checking User's Database.....")
     path = f"users/{ctx.author.id}"
+
     if await _get(path) is not None:
-        return ctx.send("User Data already exists!")
-    else:
-        return ctx.send("Registering User in the Database......")
-        return ctx.send(await register_user(ctx.author.id))
+        await ctx.send("User Data already exists!")
+        return
+
+    await ctx.send("Registering User in the Database......")
+    result = await register_user(ctx.author.id)
+    await ctx.send(result)
 
 # --------------------- Miscellaneous ---------------------
 
