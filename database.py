@@ -21,11 +21,21 @@ async def _get(path):
             return None
         return await resp.json()
 
-async def register_user(id):
+async def _put(path, value):
     session = _get_session()
-    url = f"{DB_URL}/{id}.json"
-    async with session.post(url, json=data) as resp:
-        if resp.status != 200:
-            return None
-        return await success
-            
+    url = f"{DB_URL}/{path}.json"
+    async with session.put(url, json=value) as resp:
+        return resp.status == 20
+
+async def register_user(id):
+    path = f"users/{id}"
+    value = {"gold": 0, "exp": 0, "level": 1}
+
+    registered_already = "The User already Exists!"
+    successfully_registered = "User has been Successfully Registered!"
+
+    if await _get(path) is not None:
+        return registered_already
+    else:
+        await _put(path, value)
+        return successfully_registered
