@@ -2,7 +2,6 @@ import os
 import aiohttp
 
 DB_URL = os.getenv("DATABASE")
-success = "User Successfully Registered!"
 
 _session: aiohttp.ClientSession | None = None
 
@@ -29,7 +28,7 @@ async def _put(path, value):
 
 async def register_user(id):
     path = f"users/{id}"
-    value = {"gold": 0, "exp": 0, "level": 1}
+    value = {"core": {"level": 0, "exp": 0, "currency": 0, "points": 0},"imventory": {},"miscellaneous": {}}
 
     registered_already = "The User already Exists!"
     successfully_registered = "User has been Successfully Registered!"
