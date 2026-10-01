@@ -39,7 +39,7 @@ async def search(ctx):
 
 @bot.command()
 async def register(ctx):
-    await ctx.send(f"Checking User's Database.....")
+    await ctx.send("Checking User's Database.....")
     path = f"users/{ctx.author.id}"
     if await _get(path) is not None:
         return ctx.send("User Data already exists!")
