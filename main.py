@@ -1,4 +1,5 @@
 import os
+import time
 
 import discord
 from discord.ext import commands
@@ -35,5 +36,22 @@ async def search(ctx):
     path = f"users/{ctx.author.id}"
     data = await _get(path)
     await ctx.send(str(data))
+
+@bot.command()
+async def ping(ctx):
+    start = time.perf_counter()
+    msg = await ctx.send("Pinging...")
+    api_latency = (time.perf_counter() - start) * 1000
+
+    db_start = time.perf_counter()
+    await _get("pingcheck")
+    db_latency = (time.perf_counter() - db_start) * 1000
+
+    await msg.edit(content=(
+        f"🏓 Pong!\n"
+        f"Gateway: `{bot.latency * 1000:.2f}ms`\n"
+        f"API: `{api_latency:.2f}ms`\n"
+        f"Firebase: `{db_latency:.2f}ms`"
+    ))
     
 bot.run(os.environ["APP_TOKEN"])
