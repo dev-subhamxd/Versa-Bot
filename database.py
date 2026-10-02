@@ -26,6 +26,14 @@ async def _put(path, value):
     async with session.put(url, json=value) as resp:
         return resp.status == 200
 
+async def _delete(path):
+    url = f"{DB_URL}/{path}.json"
+    session = _get_session()
+    async with session.delete(url) as resp:
+        return resp.status == 200
+
+# ---------------------------------------------------------------------------------------------------------------
+
 async def register_user(id):
     path = f"users/{id}"
     value = {"core": {"level": 0, "exp": 0, "currency": 0, "points": 0},"imventory": {},"miscellaneous": {}}
