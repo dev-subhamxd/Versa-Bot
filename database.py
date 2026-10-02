@@ -30,7 +30,9 @@ async def _delete(path):
     url = f"{DB_URL}/{path}.json"
     session = _get_session()
     async with session.delete(url) as resp:
-        return resp.status == 200
+        if resp.status != 200:
+            return None
+        return "Account Deletion Successfull!"
 
 # ---------------------------------------------------------------------------------------------------------------
 
